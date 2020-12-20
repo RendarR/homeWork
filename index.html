@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .people {
+            display: flex;
+        }
+        .card {
+            display: flex;
+            flex-direction:column;
+            height: 200px;
+            padding: 10px;
+            justify-content: center;
+            align-items: center; 
+        }
+    </style>
+</head>
+<body>
+    <div class="catalog">
+
+    </div>
+    <script>
+
+    let catalog = {
+    container: null,
+    items: [],
+    basket: null,
+    url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
+    init() {
+        this.container = document.querySelector('#catalog');
+        this.basket = basket;
+        this._get(this.url)
+            .then(arr => {
+                this.items = arr;
+            })
+            .finally(() => {
+                this._render();
+                this._handleActions();
+            })
+    },
+    _get(url) {
+        return fetch(url).then(d => d.json());
+    },
+    _fillCatalog() { //Инкапсуляция (условная для JS)
+        this.items = getArrayOfObjects();
+    },
+}
+        class Catalog {
+            //catalog
+            constructor(){
+                this.conteiner = document.querySelector('.people');
+                this.items = [];
+                this._init();
+            }
+            _init(){
+                this.items = data.map(h => new Goods (h.productName, h.productPrice, h.productImg, h.productId))
+            }
+            _render(){
+                let html = '';
+                this.items.forEach(item => {
+                    html += item.render();
+                })
+                this.conteiner.innerHTML = html
+            }
+        }
+        class Goods {
+            constructor(productName,productPrice,productImg,productId) {
+                this.productName = productName;
+                this.productPrice = productPrice;
+                this.productImg = productImg;
+                this.productId = productId;
+            }
+            render(){
+                return 
+                `<div class="item">
+                    <a href="#" class="item_">
+                        <div class="item__">
+                            <div class="img_item">
+                               <div class="open_text">
+                                    <div class="gen_add_to_card">
+                                        <img src="../src/assets/imgs/1287.png" alt="">
+                                        <p class="p_add_to_card">Add to card</p>
+                                    </div>
+                                </div>
+                                <img src="${item.productImg}" alt="">
+                            </div>
+                            <div class="footer_item">
+                                <h1 class="h1_item">${item.productName}</h1>
+                                <h2 class="h2_item">$${item.productPrice}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>`;
+            }
+            
+        }
+        console.log(catalog.init);
+    </script>
+</body>
+</html>
