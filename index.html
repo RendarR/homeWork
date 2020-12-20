@@ -56,7 +56,7 @@
                 this._init();
             }
             _init(){
-                this.items = data.map(h => new Goods (h.productName, h.productPrice, h.productImg, h.productId))
+                this.items = catalog.items.map(h => new Goods (h.productName, h.productPrice, h.productImg, h.productId))
             }
             _render(){
                 let html = '';
@@ -97,7 +97,8 @@
             }
             
         }
-        console.log(catalog.init);
+        catalog.init();
+        catalogNew = new Catalog()
     </script>
 </body>
 </html>
